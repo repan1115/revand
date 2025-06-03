@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Seni & Kebudayaan Nusantara</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Variabel Warna */
+        :root {
+            --primary: #8B4513;
+            --secondary: #F5DEB3;
+            --accent: #CD853F;
+            --light: #FFF8DC;
+            --dark: #4B3621;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://example.com/batik-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--secondary);
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Events Section */
+        .events {
+            margin: 3rem 0;
+        }
+
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-info {
+            padding: 1.5rem;
+        }
+
+        .event-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .event-date i {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--accent);
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--primary);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            color: var(--accent);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            cursor: pointer;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 99;
+        }
+
+        .toggle-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--dark);
+            color: var(--light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+
+        body.dark-mode .about {
+            background-color: #333;
+        }
+
+        body.dark-mode .event-card,
+        body.dark-mode .gallery-item {
+            background-color: #333;
+            color: #eee;
+        }
+
+        body.dark-mode .section-title {
+            color: var(--secondary);
+        }
+
+        body.dark-mode .filter-btn {
+            background-color: #444;
+            color: #eee;
+            border-color: var(--secondary);
+        }
+
+        body.dark-mode .filter-btn:hover,
+        body.dark-mode .filter-btn.active {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Individual Artwork Page Styles */
+        .artwork-page {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .artwork-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .artwork-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .artwork-meta {
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .artwork-content {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .artwork-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .artwork-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .artwork-details {
+            flex: 1;
+        }
+
+        .artwork-details h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .artwork-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .artwork-history h3,
+        .artwork-technique h3,
+        .artwork-meaning h3,
+        .artwork-materials h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .back-to-gallery {
+            display: inline-block;
+            margin-top: 2rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-to-gallery:hover {
+            background-color: var(--accent);
+        }
+
+        .related-artworks {
+            margin-top: 3rem;
+        }
+
+        .related-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .artwork-content {
+                flex-direction: column;
+            }
+            
+            .artwork-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Galeria</div>
+            <p class="tagline">Melestarikan Keindahan Seni & Kebudayaan Nusantara</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="return showGalleryView()">Beranda</a></li>
+            <li><a href="#" onclick="return showGalleryView()">Galeri</a></li>
+            <li><a href="#" onclick="return showGalleryView()">Tentang</a></li>
+            <li><a href="#" onclick="return showGalleryView()">Acara</a></li>
+            <li><a href="#" onclick="return showGalleryView()">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" id="mainContent">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="#" onclick="return showGalleryView()">Beranda</a>
+            <span>/</span>
+            <span>Galeri Seni Budaya</span>
+        </div>
+
+        <!-- Gallery Section (default view) -->
+        <section id="galleryView">
+            <section id="home" class="hero">
+                <h1>Selamat Datang di Galeri seni dan budaya</h1>
+                <p>Jelajahi kekayaan seni dan budaya Indonesia melalui koleksi digital kami. Dari batik hingga wayang, dari tari tradisional hingga musik daerah, kami hadirkan untuk Anda.</p>
+                <a href="#gallery" class="btn">Jelajahi Koleksi</a>
+            </section>
+
+            <section id="gallery" class="gallery">
+                <h2 class="section-title">Galeri Seni Budaya</h2>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Cari karya seni...">
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="batik">Batik</button>
+                    <button class="filter-btn" data-filter="wayang">Wayang</button>
+                    <button class="filter-btn" data-filter="tari">Tarian</button>
+                    <button class="filter-btn" data-filter="musik">Musik</button>
+                    <button class="filter-btn" data-filter="ukiran">Ukiran</button>
+                </div>
+                
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Items will be added by JavaScript -->
+                </div>
+                
+                <!-- Loading Animation -->
+                <div class="loading" id="loadingMore">
+                    <div class="spinner"></div>
+                    <span>Muat Lebih Banyak</span>
+                </div>
+            </section>
+
+            <section id="about" class="about">
+                <div class="container">
+                    <h2 class="section-title">Tentang Kami</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>Galeria adalah platform digital yang didedikasikan untuk melestarikan dan mempromosikan seni dan budaya Indonesia. Kami berkomitmen untuk menjadi jembatan antara warisan budaya yang kaya dengan generasi muda melalui teknologi.</p>
+                            <p>Dengan koleksi yang terus bertambah, kami menyajikan berbagai bentuk seni tradisional dari seluruh penjuru Nusantara, dilengkapi dengan informasi mendalam tentang sejarah dan makna di balik setiap karya.</p>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://example.com/about-image.jpg" alt="Tim Galeria" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="events" class="events">
+                <h2 class="section-title">Acara Budaya</h2>
+                <div class="event-list" id="eventList">
+                    <!-- Events will be added by JavaScript -->
+                </div>
+            </section>
+        </section>
+
+        <!-- Individual Artwork Pages (hidden by default) -->
+        <div id="artworkPages">
+            <!-- Pages will be generated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+        <button class="toggle-btn" id="darkModeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Galeria</h3>
+                <p>Platform digital untuk melestarikan dan mempromosikan seni budaya Indonesia.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Tautan Cepat</h3>
+                <ul>
+                    <li><a href="#" onclick="return showGalleryView()">Beranda</a></li>
+                    <li><a href="#" onclick="return showGalleryView()">Galeri</a></li>
+                    <li><a href="#" onclick="return showGalleryView()">Tentang</a></li>
+                    <li><a href="#" onclick="return showGalleryView()">Acara</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Kontak</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> SMKN 1 SAYUNG DEMAK</li>
+                    <li><i class="fas fa-phone"></i> 089507221070</li>
+                    <li><i class="fas fa-envelope"></i> @galeri.ID</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Galeri budaya.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Data Galeri Seni Budaya with more details
+        const galleryItems = [
+            {
+                id: "batik parang",
+                title: "Batik Parang",
+                image: "batik parang.jpg",
+                category: "batik",
+                region: "Yogyakarta",
+                year: "Abad 17",
+                description: "Motif batik klasik dari Yogyakarta dengan pola seperti ombak laut.",
+                history: "Batik Parang merupakan salah satu motif batik tertua di Indonesia. Konon motif ini diciptakan oleh Panembahan Senopati, pendiri Kerajaan Mataram. Awalnya motif ini hanya boleh digunakan oleh keluarga kerajaan.",
+                technique: "Dibuat dengan teknik canting tulis menggunakan malam (lilin batik). Proses pembuatan bisa memakan waktu 1-3 bulan tergantung kerumitan motif.",
+                meaning: "Motif parang melambangkan kekuatan, kesinambungan, dan ketelitian. Garis diagonal yang terus menerus menyimbolkan kesinambungan hidup dan hubungan manusia dengan Tuhan.",
+                materials: "Kain mori, malam (lilin batik), pewarna alami"
+            },
+            {
+                id: "wayang-kulit",
+                title: "Wayang Kulit",
+                image: "wayang.jpg",
+                category: "wayang",
+                region: "Jawa Tengah",
+                year: "Abad 10",
+                description: "Seni pertunjukan tradisional Jawa dengan boneka kulit yang dipahat halus.",
+                history: "Wayang Kulit telah ada sejak zaman Hindu-Buddha di Jawa. Sunan Kalijaga kemudian mengadaptasinya sebagai media dakwah Islam di Jawa dengan memasukkan nilai-nilai Islam dalam ceritanya.",
+                technique: "Terbuat dari kulit kerbau yang ditatah (diukir) halus kemudian disungging (diwarnai). Sebuah wayang kulit bisa memakan waktu 2-3 minggu untuk dibuat.",
+                meaning: "Wayang melambangkan kehidupan manusia dengan segala karakter dan sifatnya. Dalang sebagai penggerak wayang melambangkan Tuhan yang menggerakkan kehidupan.",
+                materials: "Kulit kerbau, cat, tanduk, dan logam"
+            },
+            {
+                id: "tari-saman",
+                title: "Tari Saman",
+                image: "saman brembo.jpg",
+                category: "tari",
+                region: "Aceh",
+                year: "Abad 16",
+                description: "Tarian tradisional Aceh yang dinamis dengan gerakan serempak.",
+                history: "Dikembangkan oleh Syekh Saman, seorang ulama dari Gayo, sebagai media dakwah Islam. Awalnya ditampilkan dalam acara-acara keagamaan dan perayaan penting masyarakat Gayo.",
+                technique: "Ditarikan oleh puluhan penari laki-laki dengan gerakan tepuk tangan, petikan jari, dan gerakan tubuh lainnya yang dilakukan secara serempak dan cepat.",
+                meaning: "Gerakan yang serempak melambangkan kebersamaan dan persatuan. Tarian ini juga mengandung nilai-nilai keislaman dan pendidikan moral.",
+                materials: "Pakaian tradisional Gayo dengan warna dominan hitam, merah, dan putih"
+            },
+            {
+                id: "ukiran-toraja",
+                title: "Ukiran Toraja",
+                image: "toraja.jpg",
+                category: "ukiran",
+                region: "Sulawesi Selatan",
+                year: "Tidak diketahui",
+                description: "Seni ukir kayu khas Sulawesi Selatan dengan motif geometris yang rumit.",
+                history: "Ukiran Toraja telah ada sejak zaman megalitikum dan berkaitan erat dengan kepercayaan Aluk Todolo (jalan leluhur). Setiap motif memiliki makna spiritual dan filosofis.",
+                technique: "Dibuat dengan alat pahat tradisional di atas kayu. Proses pembuatan bisa memakan waktu berminggu-minggu tergantung kerumitan motif.",
+                meaning: "Setiap motif memiliki makna khusus seperti kepahlawanan, kemakmuran, atau hubungan manusia dengan alam dan leluhur. Ukiran ini biasanya menghiasi rumah adat Tongkonan.",
+                materials: "Kayu keras seperti kayu cendana atau kayu nangka"
+            },
+            {
+                id: "tenun-ikat",
+                title: "Tenun Ikat",
+                image: "tenun.jpg",
+                category: "batik",
+                region: "Nusa Tenggara Timur",
+                year: "Tidak diketahui",
+                description: "Kain tradisional Nusa Tenggara Timur dengan teknik ikat yang unik.",
+                history: "Tenun ikat telah menjadi bagian dari budaya masyarakat NTT selama berabad-abad. Setiap daerah memiliki motif khas yang menjadi identitas suku tersebut.",
+                technique: "Benang diikat dan dicelup sebelum ditenun, menciptakan motif yang unik. Proses pembuatan bisa memakan waktu berbulan-bulan untuk satu helai kain.",
+                meaning: "Motif-motif tenun sering melambangkan status sosial, peristiwa penting, atau kepercayaan masyarakat. Kain tenun sering digunakan dalam upacara adat.",
+                materials: "Benang kapas atau sutra, pewarna alami dari tumbuhan"
+            },
+            {
+                id: "gamelan-jawa",
+                title: "Gamelan Jawa",
+                image: "gamelan.jpg",
+                category: "musik",
+                region: "Jawa",
+                year: "Abad 8",
+                description: "Ensembel musik tradisional Jawa dengan instrumen perkusi logam.",
+                history: "Gamelan telah ada sejak zaman Kerajaan Majapahit dan berkembang di keraton-keraton Jawa. Instrumen gamelan dianggap sakral dalam budaya Jawa.",
+                technique: "Terbuat dari campuran logam (kuningan, besi, atau perunggu) yang ditempa dengan teknik khusus. Setiap set gamelan memiliki nada yang unik dan tidak bisa dicampur dengan set lainnya.",
+                meaning: "Gamelan melambangkan harmoni dalam kehidupan. Bunyi yang dihasilkan dianggap sebagai suara alam yang menenangkan jiwa.",
+                materials: "Kuningan, besi, kayu (untuk kerangka), dan kulit (untuk kendang)"
+            },
+            {
+                id: "batik-mega-mendung",
+                title: "Batik Mega Mendung",
+                image: "mega mendung.png",
+                category: "batik",
+                region: "Cirebon",
+                year: "Abad 19",
+                description: "Motif batik khas Cirebon dengan pola awan bergaya.",
+                history: "Mega Mendung adalah motif batik yang terinspirasi dari awan pembawa hujan. Motif ini dikembangkan oleh para pembatik di Cirebon dan dipengaruhi oleh budaya Tionghoa.",
+                technique: "Dibuat dengan teknik canting tulis dengan gradasi warna biru yang khas. Proses pembuatan membutuhkan ketelitian tinggi untuk mendapatkan gradasi yang halus.",
+                meaning: "Motif awan melambangkan kesabaran dan ketenangan. Warna biru yang dominan melambangkan langit yang luas dan kedamaian.",
+                materials: "Kain mori, malam, pewarna biru alami"
+            },
+            {
+                id: "tari-kecak",
+                title: "Tari Kecak",
+                image: "tari kecak.jpg",
+                category: "tari",
+                region: "Bali",
+                year: "1930-an",
+                description: "Tarian Bali yang dimainkan oleh puluhan penari laki-laki.",
+                history: "Tari Kecak dikembangkan pada tahun 1930-an oleh seniman Bali Wayan Limbak bersama pelukis Jerman Walter Spies. Terinspirasi dari ritual Sanghyang dan cerita Ramayana.",
+                technique: "Ditarikan oleh 50-100 penari laki-laki yang duduk melingkar menyanyikan 'cak' secara berirama sambil menggerakkan tangan dan tubuh.",
+                meaning: "Menggambarkan kisah Ramayana terutama saat Rama meminta bantuan Hanuman untuk menyelamatkan Sinta dari Rahwana.",
+                materials: "Kostum kotak-kotak hitam-putih, api (untuk versi tertentu)"
+            }
+        ];
+
+        // Enhanced Data Acara Budaya
+        const events = [
+            {
+                title: "Grebeg Besar Demak",
+                date: "6 Juni 2025",
+                image: "grebeg demak.jpg",
+                description: "Parade Budaya di Pendopo Kabupaten Demak menuju Kadilangu.",
+                details: "Grebeg Besar Demak adalah acara tahunan yang digelar untuk memperingati Maulid Nabi Muhammad SAW. Acara ini menampilkan gunungan hasil bumi yang akan diperebutkan masyarakat setelah didoakan, simbol syukur atas rezeki dari Tuhan."
+            },
+            {
+                title: "Pawai Ogoh-ogoh",
+                date: "28 Maret 2025",
+                image: "ogoh ogoh.jpeg",
+                description: "Pawai ogoh-ogoh menjelang Hari Raya Nyepi di Bali.",
+                details: "Ogoh-ogoh adalah patung raksasa yang melambangkan kejahatan dan keburukan. Sehari sebelum Nyepi, ogoh-ogoh diarak keliling desa kemudian dibakar untuk menyimbolkan penyucian alam semesta dari kekuatan jahat."
+            },
+            {
+                title: "Pagelaran Wayang Kulit",
+                date: "24-26 Mei 2025",
+                image: "wayang.jpg",
+                description: "Pagelaran wayang kulit semalam suntuk dengan dalang terkenal.",
+                details: "Pagelaran wayang kulit semalam suntuk (sekitar 8 jam) biasanya menampilkan cerita Mahabharata atau Ramayana. Acara ini tidak hanya hiburan tetapi juga mengandung nilai-nilai filosofis Jawa yang dalam."
+            }
+        ];
+
+        // Current filter state
+        let currentFilter = 'all';
+        let displayedItems = 6; // Initial number of items to display
+        const itemsPerLoad = 3; // Items to add when loading more
+
+        // Function to filter gallery items
+        function filterGallery(filter) {
+            currentFilter = filter;
+            displayedItems = 6; // Reset to initial count when filtering
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Show filtered items
+            displayGallery();
+        }
+
+        // Function to display gallery with current filter
+        function displayGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const filteredItems = currentFilter === 'all' 
+                ? galleryItems 
+                : galleryItems.filter(item => item.category === currentFilter);
+            
+            // Show only the current count of items
+            const itemsToShow = filteredItems.slice(0, displayedItems);
+            
+            itemsToShow.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.dataset.category = item.category;
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="overlay">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <button class="btn view-details" data-id="${item.id}">Lihat Detail</button>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+            
+            // Show or hide "load more" based on remaining items
+            const loadingMore = document.getElementById('loadingMore');
+            if (displayedItems < filteredItems.length) {
+                loadingMore.style.display = 'flex';
+            } else {
+                loadingMore.style.display = 'none';
+            }
+            
+            // Add event listeners to the new detail buttons
+            addDetailEventListeners();
+        }
+
+        // Function to create individual artwork pages
+        function createArtworkPages() {
+            const artworkPagesContainer = document.getElementById('artworkPages');
+            
+            galleryItems.forEach(item => {
+                const artworkPage = document.createElement('div');
+                artworkPage.className = 'artwork-page';
+                artworkPage.id = `artwork-${item.id}`;
+                
+                // Find related artworks (same category)
+                const relatedArtworks = galleryItems.filter(
+                    art => art.category === item.category && art.id !== item.id
+                ).slice(0, 3);
+                
+                artworkPage.innerHTML = `
+                    <div class="artwork-header">
+                        <h1>${item.title}</h1>
+                        <div class="artwork-meta">${item.region} | ${item.year}</div>
+                    </div>
+                    
+                    <div class="artwork-content">
+                        <div class="artwork-image">
+                            <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        </div>
+                        <div class="artwork-details">
+                            <h2>Tentang Karya Ini</h2>
+                            <div class="artwork-description">
+                                <p>${item.description}</p>
+                            </div>
+                            
+                            <div class="artwork-history">
+                                <h3>Sejarah</h3>
+                                <p>${item.history}</p>
+                            </div>
+                            
+                            <div class="artwork-technique">
+                                <h3>Teknik Pembuatan</h3>
+                                <p>${item.technique}</p>
+                            </div>
+                            
+                            <div class="artwork-meaning">
+                                <h3>Makna Filosofis</h3>
+                                <p>${item.meaning}</p>
+                            </div>
+                            
+                            <div class="artwork-materials">
+                                <h3>Bahan yang Digunakan</h3>
+                                <p>${item.materials}</p>
+                            </div>
+                            
+                            <a href="#" class="back-to-gallery" onclick="return showGalleryView()">
+                                <i class="fas fa-arrow-left"></i> Kembali ke Galeri
+                            </a>
+                        </div>
+                    </div>
+                    
+                    ${relatedArtworks.length > 0 ? `
+                    <div class="related-artworks">
+                        <h3 class="related-title">Karya Serupa</h3>
+                        <div class="gallery-grid">
+                            ${relatedArtworks.map(art => `
+                                <div class="gallery-item">
+                                    <img src="${art.image}" alt="${art.title}" loading="lazy">
+                                    <div class="overlay">
+                                        <h3>${art.title}</h3>
+                                        <p>${art.description}</p>
+                                        <button class="btn view-details" data-id="${art.id}">Lihat Detail</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                `;
+                
+                artworkPagesContainer.appendChild(artworkPage);
+            });
+        }
+
+        // Function to show individual artwork page
+        function showArtworkPage(artworkId) {
+            // Hide gallery view
+            document.getElementById('galleryView').style.display = 'none';
+            
+            // Show the specific artwork page
+            document.getElementById(`artwork-${artworkId}`).style.display = 'block';
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.innerHTML = `
+                <a href="#" onclick="return showGalleryView()">Beranda</a>
+                <span>/</span>
+                <a href="#" onclick="return showGalleryView()">Galeri</a>
+                <span>/</span>
+                <span>${galleryItems.find(item => item.id === artworkId).title}</span>
+            `;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Add event listeners to related artwork buttons
+            setTimeout(() => {
+                document.querySelectorAll(`#artwork-${artworkId} .view-details`).forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        showArtworkPage(this.dataset.id);
+                    });
+                });
+            }, 100);
+            
+            return false;
+        }
+
+        // Function to show gallery view (main page)
+        function showGalleryView() {
+            // Hide all artwork pages
+            document.querySelectorAll('.artwork-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show gallery view
+            document.getElementById('galleryView').style.display = 'block';
+            
+            // Reset breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.innerHTML = `
+                <a href="#" onclick="return showGalleryView()">Beranda</a>
+                <span>/</span>
+                <span>Galeri Seni Budaya</span>
+            `;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            return false;
+        }
+
+        // Function to display events
+        function displayEvents() {
+            const eventList = document.getElementById('eventList');
+            
+            events.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                
+                eventCard.innerHTML = `
+                    <img src="${event.image}" alt="${event.title}" loading="lazy">
+                    <div class="event-info">
+                        <h3>${event.title}</h3>
+                        <div class="event-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${event.date}</span>
+                        </div>
+                        <p>${event.description}</p>
+                        <button class="btn view-event-details" data-id="${events.indexOf(event)}">Detail Acara</button>
+                    </div>
+                `;
+                
+                eventList.appendChild(eventCard);
+            });
+            
+            // Add event listeners to event detail buttons
+            document.querySelectorAll('.view-event-details').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const eventId = parseInt(this.dataset.id);
+                    showEventDetails(eventId);
+                });
+            });
+        }
+
+        // Function to show event details in modal
+        function showEventDetails(eventId) {
+            const event = events[eventId];
+            alert(`Detail Acara:\n\n${event.title}\n${event.date}\n\n${event.details}`);
+        }
+
+        // Function to add event listeners to detail buttons
+        function addDetailEventListeners() {
+            document.querySelectorAll('.view-details').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showArtworkPage(this.dataset.id);
+                });
+            });
+        }
+
+        // Function for search functionality
+        function searchGallery() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm.trim() === '') {
+                filterGallery(currentFilter);
+                return;
+            }
+            
+            const filteredItems = galleryItems.filter(item => 
+                item.title.toLowerCase().includes(searchTerm) || 
+                item.description.toLowerCase().includes(searchTerm) ||
+                (item.history && item.history.toLowerCase().includes(searchTerm)) ||
+                (item.meaning && item.meaning.toLowerCase().includes(searchTerm))
+            );
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+            
+            if (filteredItems.length === 0) {
+                galleryGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Tidak ditemukan hasil untuk pencarian Anda.</p>';
+                document.getElementById('loadingMore').style.display = 'none';
+            } else {
+                filteredItems.forEach(item => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.dataset.category = item.category;
+                    
+                    galleryItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="overlay">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <button class="btn view-details" data-id="${item.id}">Lihat Detail</button>
+                        </div>
+                    `;
+                    
+                    galleryGrid.appendChild(galleryItem);
+                });
+                
+                document.getElementById('loadingMore').style.display = 'none';
+                addDetailEventListeners();
+            }
+        }
+
+        // Function for smooth scrolling
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#darkModeToggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        // Function to setup sticky navigation
+        function setupStickyNav() {
+            const nav = document.querySelector('nav');
+            const navOffsetTop = nav.offsetTop;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY >= navOffsetTop) {
+                    nav.classList.add('sticky');
+                } else {
+                    nav.classList.remove('sticky');
+                }
+            });
+        }
+
+        // Function to show/hide back to top button
+        function setupBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Function to load more items
+        function loadMoreItems() {
+            displayedItems += itemsPerLoad;
+            displayGallery();
+            
+            // Smooth scroll to show new items
+            const gallerySection = document.getElementById('gallery');
+            setTimeout(() => {
+                gallerySection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 100);
+        }
+
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', () => {
+            createArtworkPages();
+            displayGallery();
+            displayEvents();
+            setupSmoothScrolling();
+            setupStickyNav();
+            setupBackToTop();
+            
+            // Initialize dark mode toggle
+            document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+            
+            // Initialize search functionality
+            document.getElementById('searchBtn').addEventListener('click', searchGallery);
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') searchGallery();
+            });
+            
+            // Initialize filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterGallery(this.dataset.filter);
+                });
+            });
+            
+            // Initialize load more button
+            document.getElementById('loadingMore').addEventListener('click', loadMoreItems);
+        });
+    </script>
+</body>
+</html>
